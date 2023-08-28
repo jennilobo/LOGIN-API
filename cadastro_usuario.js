@@ -1,35 +1,40 @@
-const form = document.querySelector("#cadastroForm");
-const backButton = document.querySelector("#backButton");
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("#cadastroForm");
+    const backButton = document.querySelector("#loginLink");
+    const showAlertContainer = document.querySelector("#showAlert");
 
-function cadastrar(event) {
-    event.preventDefault();
-    const nome = form.nome.value;
-    const email = form.email.value;
-    const senha = form.senha.value;
+    async function cadastrar(event) {
+        event.preventDefault();
 
-    if (!nome || !email || !senha) {
-        alert("Preencha todos os campos.");
-        return;
+        const nome = form.nome.value;
+        const email = form.email.value;
+        const senha = form.senha.value;
+
+        if (!nome || !email || !senha) {
+            showAlert("Preencha todos os campos.", "danger", showAlertContainer);
+            return;
+        }
+
+        const userData = {
+            nome: nome,
+            email: email,
+            senha: senha,
+        };
+
+        try {
+            const response = await axios.post("https://api-recados-oixo.onrender.com/usuarios", userData);
+            showAlert("Registered successfully! Redirecting to login page...", "success", showAlertContainer);
+            console.log(`Registered User:\nNome: ${nome}\nEmail: ${email}`);
+            localStorage.setItem("registeredUser", JSON.stringify({ nome, email }));
+            redirectToPageAfterDelay("login.html", showAlertContainer);
+        } catch (error) {
+            showAlert("Error registering user. Try another email.", "danger", showAlertContainer);
+        }
     }
 
-    const userData = {
-        nome: nome,
-        email: email,
-        senha: senha,
-    };
+    form.addEventListener("submit", cadastrar);
 
-    axios.post("https://api-recados-oixo.onrender.com/usuarios", userData)
-        .then((response) => {
-            alert("Usuário cadastrado com sucesso.");
-            window.location.href = "login.html";
-        })
-        .catch((error) => {
-            alert("Erro ao cadastrar usuário.");
-        });
-}
-
-form.addEventListener("submit", cadastrar);
-
-backButton.addEventListener("click", function () {
-    window.location.href = "login.html";
+    loginLink.addEventListener("click", function () {
+        redirectToPageAfterDelay("login.html", showAlertContainer);
+    });
 });

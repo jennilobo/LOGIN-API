@@ -4,20 +4,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
-    <title>Lista de Recados</title>
-</head>
+    <style>
+        body {
+            background-color: rgb(118, 44, 236);
+        }
 
-<body>
-    <h1>Lista de Recados</h1>
-    <ul id="recadosList"></ul>
-    <div class="pagination">
-        <button id="prevPage">Anterior</button>
-        <span id="currentPage">Página: 1</span>
-        <button id="nextPage">Próxima</button>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: transparent;
+            min-height: 100vh;
+            overflow-y: auto;
+        }
+
+        #recadosList {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 20px;
+        }
+
+
+        .pagination .page-link {
+            color: #212529;
+        }
+
+        .btn-primary {
+            background-color: #212529;
+            border: none;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .btn-primary:hover {
+            color: white;
+            background-color: green;
+            border-color: white;
+            transform: scale(1.05);
+        }
+
+
+        .btn-secondary {
+            background-color: #300458;
+            color: white;
+            border-color: #0d6efd;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .btn-secondary:hover {
+            background-color: #300458;
+            color: white;
+            border-color: #0d6efd;
+            transform: scale(1.05);
+        }
+
+        .card {
+            border: none;
+            background-color: #fff;
+            color: #212529;
+            width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+        }
+
+        .card-text {
+            font-size: 1rem;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .list-group-item {
+            background-color: transparent;
+        }
+
+        .navbar-custom {
+            background-color: #fff;
+        }
+
+        .no-recados-message {
+            color: black;
+            background-color: red;
+        }
+    </style>
+    </header>
+
+<body class="container-fluid p-0" style="background-color: rgb(118, 44, 236);">
+    <div class="container-fluid p-0">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light m-0 p-0 navbar-custom">
+            <div class="container-fluid p-0">
+                <a class="navbar-brand p-0 m-1" href="lista_recados.html">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/2560px-Bootstrap_logo.svg.png"
+                        alt="Bootstrap" width="50" height="40">
+                </a>
+            </div>
+        </nav>
     </div>
-    <button id="btnSair">Sair</button>
+    <div class="col">
+        <div class="row">
+            <div class="container mt-5">
+                <div class="recados-container">
+                    <h1 class="mb-4 d-flex justify-content-center" style="color: white;">List of Messages</h1>
+                    <div id="recadosList" class="d-flex flex-wrap justify-content-center"></div>
+                </div>
 
+                <nav class="mt-4">
+                    <ul class="pagination">
+                        <li class="page-item" id="prevPage"><a class="page-link" href="#">Return</a></li>
+                        <li class="page-item disabled"><span class="page-link" id="currentPage">Page: 1</span></li>
+                        <li class="page-item" id="nextPage"><a class="page-link" href="#">Next </a></li>
+                    </ul>
+                </nav>
+                <button id="btnRestaurar" class="btn btn-primary mt-4">Restore Messages</button>
+                <button id="btnSair" class="btn btn-secondary mt-4">Exit</button>
+
+            </div>
+        </div>
+    </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="lista_recados.js"></script>
 </body>
