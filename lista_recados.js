@@ -5,8 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const currentPageSpan = document.getElementById("currentPage");
     const backButton = document.getElementById("btnSair");
 
-    let currentPage = 1; 
-    const pageSize = 2; 
+    let currentPage = 1;
+    const pageSize = 2;
 
     function getUserIdFromSession() {
         return localStorage.getItem("userId");
@@ -63,10 +63,10 @@ document.addEventListener("DOMContentLoaded", function () {
             sair();
         });
     }
-    
+
     function sair() {
-        localStorage.removeItem("userId"); // Limpa o ID de usuário da sessão
-        window.location.href = "login.html"; // Redireciona para a página de login
+        localStorage.removeItem("userId");
+        window.location.href = "login.html";
     }
 
     loadRecados(currentPage);
